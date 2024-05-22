@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,8 +15,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.esanchez.devel.model.Person;
 import com.esanchez.devel.service.PersonService;
-
-import jakarta.websocket.server.PathParam;
 
 @RestController
 @RequestMapping("/mongodb")
@@ -41,6 +40,14 @@ public class MainController {
 	public ResponseEntity<?> addFriend(@PathVariable("name") String name, @RequestBody Person friend) {
 		
 		personService.addFriend(name, friend);
+		
+		return ResponseEntity.ok().build();
+	}
+	
+	@DeleteMapping("/person/{name}")
+	public ResponseEntity<?> deletePerson(@PathVariable("name") String name) {
+		
+		personService.deletePerson(name);
 		
 		return ResponseEntity.ok().build();
 	}

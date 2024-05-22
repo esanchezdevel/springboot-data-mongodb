@@ -43,4 +43,16 @@ public class PersonServiceImpl implements PersonService {
 			logger.error("Person not found with name '{}'", name);
 		}
 	}
+	
+	@Override
+	public void deletePerson(String name) {
+		
+		Optional<Person> person = personRepository.findByName(name);
+		
+		if (person.isPresent()) {
+			personRepository.delete(person.get());	
+		} else {
+			logger.error("Person not found with name '{}'", name);
+		}
+	}
 }

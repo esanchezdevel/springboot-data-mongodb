@@ -11,4 +11,6 @@ public interface PersonService {
 	void insert(Person person);
 	
 	void addFriend(String name, Person friend);
+	
+	void deletePerson(String name);
 }

@@ -6,3 +6,6 @@ List all people
 
 Update person adding a friend to the list
 - `curl -vv -XPUT http://localhost:8080/mongodb/person/tom/add/friend -d '{"name":"Jerry", "age": 32}' -H 'Content-Type: application/json'`
+
+Delete person
+- `curl -vv -X DELETE http://localhost:8080/mongodb/person/tom -H 'Accept: application/json'` 
