@@ -5,13 +5,17 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.esanchez.devel.model.Person;
 import com.esanchez.devel.service.PersonService;
+
+import jakarta.websocket.server.PathParam;
 
 @RestController
 @RequestMapping("/mongodb")
@@ -29,6 +33,14 @@ public class MainController {
 	public ResponseEntity<?> insertPerson(@RequestBody Person person) {
 		
 		personService.insert(person);
+		
+		return ResponseEntity.ok().build();
+	}
+	
+	@PutMapping("/person/{name}/add/friend")
+	public ResponseEntity<?> addFriend(@PathVariable("name") String name, @RequestBody Person friend) {
+		
+		personService.addFriend(name, friend);
 		
 		return ResponseEntity.ok().build();
 	}

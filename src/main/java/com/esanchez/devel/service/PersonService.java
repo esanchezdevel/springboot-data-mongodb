@@ -9,4 +9,6 @@ public interface PersonService {
 	List<Person> listAll();
 	
 	void insert(Person person);
+	
+	void addFriend(String name, Person friend);
 }
